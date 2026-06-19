@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,81 +7,289 @@
     <link rel="icon" type="image/png" href="https://i.ibb.co.com/NnSbH2Tm/file-0000000010b8720892c1b323dd514a9f.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #050505; color: white; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .video-bg iframe { width: 100vw; height: 100vh; object-fit: cover; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #050505; 
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Modern Glassmorphism */
+        .glass { 
+            background: rgba(20, 20, 25, 0.4); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* 3D Hover Effects */
+        .hover-3d { 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; 
+        }
+        .hover-3d:hover { 
+            transform: translateY(-8px) scale(1.02); 
+        }
+
+        /* Background Video */
+        .video-bg { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            z-index: -2; 
+            pointer-events: none; 
+            overflow: hidden;
+        }
+        .video-bg iframe { 
+            width: 100vw; 
+            height: 100vh; 
+            object-fit: cover; 
+            transform: scale(1.2); /* Prevents black borders on some aspect ratios */
+        }
+        
+        /* Ambient Overlay */
+        .ambient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, #050505 90%);
+            z-index: -1;
+            pointer-events: none;
+        }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-purple-500 selection:text-white">
 
-    <!-- Hero -->
-    <section class="relative h-screen flex flex-col justify-center items-center text-center">
-        <div class="video-bg">
-            <iframe src="https://www.youtube.com/embed/dZTRBrykyH4?autoplay=1&mute=1&loop=1&playlist=dZTRBrykyH4&controls=0&showinfo=0&disablekb=1&modestbranding=1" frameborder="0" allow="autoplay"></iframe>
+    <!-- Ambient Video Background -->
+    <div class="video-bg">
+        <iframe src="https://www.youtube.com/embed/dZTRBrykyH4?autoplay=1&mute=1&loop=1&playlist=dZTRBrykyH4&controls=0&showinfo=0&disablekb=1&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+    </div>
+    <div class="ambient-overlay"></div>
+
+    <!-- Sticky Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 glass border-b-0 border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <img src="https://i.ibb.co.com/NnSbH2Tm/file-0000000010b8720892c1b323dd514a9f.png" class="h-10 w-auto filter drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]" alt="TSBCPlay Logo">
+                <span class="font-bold text-xl tracking-tight hidden sm:block">TSBC<span class="text-yellow-400">Play</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium text-sm text-gray-300">
+                <a href="#about" class="hover:text-yellow-400 transition-colors">Features</a>
+                <a href="#games" class="hover:text-purple-400 transition-colors">Library</a>
+                <a href="#interface" class="hover:text-blue-400 transition-colors">Interface</a>
+            </div>
+            <a href="#games" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:shadow-[0_0_25px_rgba(59,130,246,0.6)]">
+                Get Started
+            </a>
         </div>
-        <img src="https://i.ibb.co.com/NnSbH2Tm/file-0000000010b8720892c1b323dd514a9f.png" class="w-24 mb-6">
-        <h1 class="text-7xl font-black mb-4">TSBC<span class="text-yellow-400">PLAY</span></h1>
-        <p class="text-xl mb-8 max-w-lg opacity-90">The all-in-one launcher for the SSIA Universe. Automatic updates, repairs, and integrity management.</p>
-        <div class="flex gap-4">
-            <a href="#about" class="bg-blue-600 hover:bg-blue-500 px-8 py-4 rounded-lg font-bold transition">Download Installer</a>
-            <a href="#games" class="bg-white/10 hover:bg-white/20 px-8 py-4 rounded-lg font-bold transition">View Games</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <div class="animate-fade-in-up flex flex-col items-center">
+            <div class="p-4 rounded-3xl glass-card mb-8">
+                <img src="https://i.ibb.co.com/NnSbH2Tm/file-0000000010b8720892c1b323dd514a9f.png" class="w-24 md:w-32 drop-shadow-2xl">
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter drop-shadow-lg">
+                TSBC<span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-200">PLAY</span>
+            </h1>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl text-gray-200 font-light drop-shadow-md leading-relaxed">
+                The all-in-one launcher for the SSIA Universe. Automatic updates, seamless repairs, and ultimate integrity management.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="#games" class="bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-transform hover:scale-105 shadow-[0_0_20px_rgba(234,179,8,0.3)]">
+                    Download Installer
+                </a>
+                <a href="#about" class="glass px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Why TSBCPlay Section -->
+    <section id="about" class="py-24 px-6 relative z-10 bg-black/60 backdrop-blur-xl border-y border-white/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Why <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">TSBCPlay?</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">A strong focus on file integrity and game maintenance.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="glass-card p-8 md:p-10 rounded-3xl">
+                    <h3 class="text-2xl font-bold mb-4 text-yellow-400">The New Workflow</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        Starting with the next <strong>SSIA: Vanguard Chronicles</strong> patch, all itch.io distributed games ship via the TSBCPlay Installer. No more manual ZIP downloads.
+                    </p>
+                    <div class="bg-black/50 p-4 rounded-xl border border-white/5 font-mono text-sm text-gray-400 mb-6">
+                        <span class="text-red-400 line-through block mb-2">Export → ZIP → Upload to itch.io (Every Patch)</span>
+                        <span class="text-green-400 block">Export → ZIP → GitHub Releases → TSBCPlay Auto-Update</span>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">
+                        Instead of reinstalling when files corrupt, TSBCPlay keeps your installations healthy, verified, and up to date automatically.
+                    </p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="glass p-6 rounded-2xl hover-3d">
+                        <div class="text-blue-400 text-2xl mb-3">⬇️</div>
+                        <h4 class="font-bold mb-2">Automated Installs</h4>
+                        <p class="text-sm text-gray-400">Download and install games with a single click.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl hover-3d">
+                        <div class="text-yellow-400 text-2xl mb-3">🔧</div>
+                        <h4 class="font-bold mb-2">Smart Repairs</h4>
+                        <p class="text-sm text-gray-400">Verify installations and repair missing game files instantly.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl hover-3d">
+                        <div class="text-purple-400 text-2xl mb-3">💾</div>
+                        <h4 class="font-bold mb-2">Save Backups</h4>
+                        <p class="text-sm text-gray-400">Automatic save data protection so you never lose progress.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl hover-3d">
+                        <div class="text-green-400 text-2xl mb-3">⚡</div>
+                        <h4 class="font-bold mb-2">Performance Tools</h4>
+                        <p class="text-sm text-gray-400">Built-in device performance management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Release Channels -->
+            <div class="glass-card rounded-3xl p-8 border-t-4 border-t-purple-500">
+                <h3 class="text-2xl font-bold mb-6 text-center">Release Channels</h3>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="p-6 rounded-xl bg-gradient-to-b from-yellow-500/20 to-transparent border border-yellow-500/30">
+                        <h5 class="font-bold text-yellow-400 text-lg">Canary</h5>
+                        <span class="inline-block px-3 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded-full mt-2 mb-3">Available Now</span>
+                        <p class="text-sm text-gray-400">Experimental features and early testing builds.</p>
+                    </div>
+                    <div class="p-6 rounded-xl bg-gradient-to-b from-blue-500/10 to-transparent border border-blue-500/20 opacity-70">
+                        <h5 class="font-bold text-blue-400 text-lg">Beta</h5>
+                        <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full mt-2 mb-3">Planned</span>
+                        <p class="text-sm text-gray-400">Upcoming stable features undergoing testing.</p>
+                    </div>
+                    <div class="p-6 rounded-xl bg-gradient-to-b from-green-500/10 to-transparent border border-green-500/20 opacity-70">
+                        <h5 class="font-bold text-green-400 text-lg">Stable</h5>
+                        <span class="inline-block px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full mt-2 mb-3">Planned</span>
+                        <p class="text-sm text-gray-400">The recommended, highly polished release for most users.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Why TSBCPlay -->
-    <section id="about" class="py-20 px-6 max-w-4xl mx-auto">
-        <h2 class="text-4xl font-bold mb-10 text-yellow-400">Why TSBCPlay?</h2>
-        <div class="glass p-8 rounded-2xl mb-12">
-            <p class="mb-6">Starting with the next <strong>SSIA: Vanguard Chronicles</strong> patch, we are moving away from manual ZIP distribution. TSBCPlay handles your game installation, verification, and updates via GitHub Releases, ensuring your files stay healthy.</p>
-            <h4 class="font-bold mb-2">Key Features:</h4>
-            <ul class="grid md:grid-cols-2 gap-2 text-gray-300">
-                <li>✓ Automatic update notifications</li>
-                <li>✓ File repair & integrity checks</li>
-                <li>✓ Automatic save data backups</li>
-                <li>✓ Device performance tools</li>
-                <li>✓ Centralized game management</li>
-            </ul>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 text-center">
-            <div class="glass p-6 rounded-xl border-t-4 border-yellow-500">
-                <h5 class="font-bold">Canary</h5>
-                <p class="text-xs text-gray-400 mt-2">Available: Experimental features.</p>
+    <!-- Interface Showcase -->
+    <section id="interface" class="py-24 px-6 relative z-10 bg-black/80">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Sleek, Modern <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Interface</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Designed for ease of use, putting your games front and center.</p>
             </div>
-            <div class="glass p-6 rounded-xl border-t-4 border-blue-500">
-                <h5 class="font-bold">Beta</h5>
-                <p class="text-xs text-gray-400 mt-2">Coming Soon: Upcoming stability.</p>
-            </div>
-            <div class="glass p-6 rounded-xl border-t-4 border-purple-500">
-                <h5 class="font-bold">Stable</h5>
-                <p class="text-xs text-gray-400 mt-2">Coming Soon: Recommended release.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Screenshot 1 -->
+                <div class="hover-3d glass-card p-2 rounded-2xl shadow-[0_10px_30px_rgba(59,130,246,0.15)] hover:shadow-[0_15px_40px_rgba(59,130,246,0.3)] group cursor-pointer">
+                    <div class="overflow-hidden rounded-xl">
+                        <img src="https://i.ibb.co.com/9kJgFjVw/image-7-2.png" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <!-- Screenshot 2 -->
+                <div class="hover-3d glass-card p-2 rounded-2xl shadow-[0_10px_30px_rgba(168,85,247,0.15)] hover:shadow-[0_15px_40px_rgba(168,85,247,0.3)] group cursor-pointer lg:-translate-y-6">
+                    <div class="overflow-hidden rounded-xl">
+                        <img src="https://i.ibb.co.com/cKjFsynQ/image-4-2.png" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <!-- Screenshot 3 -->
+                <div class="hover-3d glass-card p-2 rounded-2xl shadow-[0_10px_30px_rgba(234,179,8,0.15)] hover:shadow-[0_15px_40px_rgba(234,179,8,0.3)] group cursor-pointer">
+                    <div class="overflow-hidden rounded-xl">
+                        <img src="https://i.ibb.co.com/RkRBPDFD/image-5-2.png" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <!-- Screenshot 4 -->
+                <div class="hover-3d glass-card p-2 rounded-2xl shadow-[0_10px_30px_rgba(59,130,246,0.15)] hover:shadow-[0_15px_40px_rgba(59,130,246,0.3)] group cursor-pointer">
+                    <div class="overflow-hidden rounded-xl">
+                        <img src="https://i.ibb.co.com/5WhY6WKL/image-3-2.png" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <!-- Screenshot 5 -->
+                <div class="hover-3d glass-card p-2 rounded-2xl shadow-[0_10px_30px_rgba(168,85,247,0.15)] hover:shadow-[0_15px_40px_rgba(168,85,247,0.3)] group cursor-pointer lg:-translate-y-6">
+                    <div class="overflow-hidden rounded-xl">
+                        <img src="https://i.ibb.co.com/gZVCb03c/image-2-2.png" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <!-- Screenshot 6 -->
+                <div class="hover-3d glass-card p-2 rounded-2xl shadow-[0_10px_30px_rgba(234,179,8,0.15)] hover:shadow-[0_15px_40px_rgba(234,179,8,0.3)] group cursor-pointer">
+                    <div class="overflow-hidden rounded-xl">
+                        <img src="https://i.ibb.co.com/fYn5Qpzr/image-1-2.png" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Games Library -->
-    <section id="games" class="py-20 px-6 max-w-6xl mx-auto">
-        <h3 class="text-4xl font-bold mb-12 text-center text-blue-400">Library</h3>
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="glass rounded-3xl overflow-hidden">
-                <img src="https://i.ibb.co.com/6JmwmvQq/Steel-Veins-20260602-122944-0000.png" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <img src="https://i.ibb.co.com/46DzRGf/20260417-105314.jpg" class="w-16 h-16 rounded-xl -mt-12 mb-4 border-4 border-black">
-                    <h4 class="text-2xl font-bold">Vanguard Chronicles</h4>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://tenstudiosbc.itch.io/ssia-vanguard-chronicles" target="_blank" class="bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-500">Download (Itch)</a>
-                        <a href="https://drive.google.com/file/d/1DE5AMrf7s8sQ6CiJmeitJIkuMOe5DY_B/view?usp=drivesdk" target="_blank" class="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600 text-sm">Alt (Drive)</a>
+    <section id="games" class="py-24 px-6 relative z-10 bg-gradient-to-b from-black/80 to-black border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">SSIA Universe <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Library</span></h2>
+                <p class="text-gray-400">Developed exclusively by TSBC Games.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Vanguard Chronicles -->
+                <div class="glass-card rounded-3xl overflow-hidden hover-3d flex flex-col h-full border border-yellow-500/20">
+                    <div class="relative h-56">
+                        <img src="https://i.ibb.co.com/6JmwmvQq/Steel-Veins-20260602-122944-0000.png" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141419] to-transparent"></div>
+                    </div>
+                    <div class="p-8 pt-0 flex-grow flex flex-col relative z-10">
+                        <img src="https://i.ibb.co.com/46DzRGf/20260417-105314.jpg" class="w-20 h-20 rounded-2xl -mt-10 mb-5 border-4 border-[#141419] shadow-lg">
+                        <h4 class="text-3xl font-bold tracking-tight mb-2">Vanguard Chronicles</h4>
+                        <p class="text-gray-400 mb-8 flex-grow text-sm leading-relaxed">The definitive SSIA experience. Engage in deep RPG combat, rich storytelling, and high-stakes adventure.</p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a href="https://tenstudiosbc.itch.io/ssia-vanguard-chronicles" target="_blank" class="flex-1 text-center bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 rounded-xl font-bold hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-shadow">
+                                Download (Itch.io)
+                            </a>
+                            <a href="https://drive.google.com/file/d/1DE5AMrf7s8sQ6CiJmeitJIkuMOe5DY_B/view?usp=drivesdk" target="_blank" class="text-center glass px-6 py-3 rounded-xl font-semibold text-sm hover:bg-white/10 transition-colors border border-white/10 flex items-center justify-center">
+                                Alt. Link (Drive)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ShadowFront (Coming Soon) -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col items-center justify-center text-center border border-purple-500/20 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-transparent z-0 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <img src="https://i.ibb.co.com/CKvFpqnk/20260303-162840.png" class="w-28 h-28 rounded-3xl mb-6 shadow-2xl shadow-purple-500/20 filter grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white/10">
+                        <h4 class="text-3xl font-bold tracking-tight text-gray-300 group-hover:text-white transition-colors mb-4">SSIA ShadowFront</h4>
+                        <span class="inline-flex items-center gap-2 bg-purple-500/20 text-purple-300 border border-purple-500/30 px-5 py-2 rounded-full text-xs font-bold tracking-wider uppercase backdrop-blur-sm">
+                            <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+                            In Development
+                        </span>
                     </div>
                 </div>
             </div>
-            <div class="glass rounded-3xl p-10 flex flex-col items-center justify-center text-center">
-                <img src="https://i.ibb.co.com/CKvFpqnk/20260303-162840.png" class="w-24 h-24 rounded-2xl mb-4">
-                <h4 class="text-2xl font-bold">SSIA ShadowFront</h4>
-                <span class="bg-purple-600 px-4 py-1 rounded-full text-xs mt-2">COMING SOON</span>
-            </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500 text-sm border-t border-white/5 glass relative z-10 bg-black/90">
+        <p>&copy; 2026 TSBC Games. All rights reserved. SSIA Universe.</p>
+    </footer>
+
 </body>
 </html>
