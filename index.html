@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSBCPlay | Official Portal</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co.com/NnSbH2Tm/file-0000000010b8720892c1b323dd514a9f.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #050505; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .video-bg iframe { width: 100vw; height: 100vh; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="relative h-screen flex flex-col justify-center items-center text-center">
+        <div class="video-bg">
+            <iframe src="https://www.youtube.com/embed/dZTRBrykyH4?autoplay=1&mute=1&loop=1&playlist=dZTRBrykyH4&controls=0&showinfo=0&disablekb=1&modestbranding=1" frameborder="0" allow="autoplay"></iframe>
+        </div>
+        <img src="https://i.ibb.co.com/NnSbH2Tm/file-0000000010b8720892c1b323dd514a9f.png" class="w-24 mb-6">
+        <h1 class="text-7xl font-black mb-4">TSBC<span class="text-yellow-400">PLAY</span></h1>
+        <p class="text-xl mb-8 max-w-lg opacity-90">The all-in-one launcher for the SSIA Universe. Automatic updates, repairs, and integrity management.</p>
+        <div class="flex gap-4">
+            <a href="#about" class="bg-blue-600 hover:bg-blue-500 px-8 py-4 rounded-lg font-bold transition">Download Installer</a>
+            <a href="#games" class="bg-white/10 hover:bg-white/20 px-8 py-4 rounded-lg font-bold transition">View Games</a>
+        </div>
+    </section>
+
+    <!-- Why TSBCPlay -->
+    <section id="about" class="py-20 px-6 max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold mb-10 text-yellow-400">Why TSBCPlay?</h2>
+        <div class="glass p-8 rounded-2xl mb-12">
+            <p class="mb-6">Starting with the next <strong>SSIA: Vanguard Chronicles</strong> patch, we are moving away from manual ZIP distribution. TSBCPlay handles your game installation, verification, and updates via GitHub Releases, ensuring your files stay healthy.</p>
+            <h4 class="font-bold mb-2">Key Features:</h4>
+            <ul class="grid md:grid-cols-2 gap-2 text-gray-300">
+                <li>✓ Automatic update notifications</li>
+                <li>✓ File repair & integrity checks</li>
+                <li>✓ Automatic save data backups</li>
+                <li>✓ Device performance tools</li>
+                <li>✓ Centralized game management</li>
+            </ul>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 text-center">
+            <div class="glass p-6 rounded-xl border-t-4 border-yellow-500">
+                <h5 class="font-bold">Canary</h5>
+                <p class="text-xs text-gray-400 mt-2">Available: Experimental features.</p>
+            </div>
+            <div class="glass p-6 rounded-xl border-t-4 border-blue-500">
+                <h5 class="font-bold">Beta</h5>
+                <p class="text-xs text-gray-400 mt-2">Coming Soon: Upcoming stability.</p>
+            </div>
+            <div class="glass p-6 rounded-xl border-t-4 border-purple-500">
+                <h5 class="font-bold">Stable</h5>
+                <p class="text-xs text-gray-400 mt-2">Coming Soon: Recommended release.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Library -->
+    <section id="games" class="py-20 px-6 max-w-6xl mx-auto">
+        <h3 class="text-4xl font-bold mb-12 text-center text-blue-400">Library</h3>
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="glass rounded-3xl overflow-hidden">
+                <img src="https://i.ibb.co.com/6JmwmvQq/Steel-Veins-20260602-122944-0000.png" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <img src="https://i.ibb.co.com/46DzRGf/20260417-105314.jpg" class="w-16 h-16 rounded-xl -mt-12 mb-4 border-4 border-black">
+                    <h4 class="text-2xl font-bold">Vanguard Chronicles</h4>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://tenstudiosbc.itch.io/ssia-vanguard-chronicles" target="_blank" class="bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-500">Download (Itch)</a>
+                        <a href="https://drive.google.com/file/d/1DE5AMrf7s8sQ6CiJmeitJIkuMOe5DY_B/view?usp=drivesdk" target="_blank" class="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600 text-sm">Alt (Drive)</a>
+                    </div>
+                </div>
+            </div>
+            <div class="glass rounded-3xl p-10 flex flex-col items-center justify-center text-center">
+                <img src="https://i.ibb.co.com/CKvFpqnk/20260303-162840.png" class="w-24 h-24 rounded-2xl mb-4">
+                <h4 class="text-2xl font-bold">SSIA ShadowFront</h4>
+                <span class="bg-purple-600 px-4 py-1 rounded-full text-xs mt-2">COMING SOON</span>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
